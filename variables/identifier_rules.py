@@ -24,17 +24,12 @@ print(keyword.kwlist)
 'str' is datatype of the object, that will be store to this variable inside memory.
 This method is called type hinting or type annotation.
 """
-def main()->None:
 
-    some_var: str = ''
-    some_var_2: str = ''
-    some_var_3, some_var_4 = '', ''
-    print(some_var,
-          some_var_2,
-          some_var_3,
-          some_var_4)
+some_var: str = ''
+some_var_2: str = ''
+some_var_3, some_var_4 = '', ''
+    
 
 
-if __name__ == '__main__':
-    main()
+
 
