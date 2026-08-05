@@ -9,3 +9,5 @@ after creation.
 
 random_int: int = 0 # Default value [whose bool(var_name) is False always]
 random_int_2: int = 10 # Non-Defualt value [whose bool(var_name) is True always]
+
+print(random_int, random_int_2)
