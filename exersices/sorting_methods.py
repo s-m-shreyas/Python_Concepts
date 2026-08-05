@@ -58,3 +58,23 @@ def merge_sort(some_list: list[int])->list[int]:
 
 pass_list: list[int] = [1, 3, 2, 5, 4, 7, 6, 8]
 print(merge_sort(pass_list))
+
+# Bubble Sort Method ->
+
+num_list: list[int] = [1, 3, 2, 5, 5, 4, 7, 4, 6, 8, 11, 10, 9]
+
+swap: bool = True
+
+while swap:
+
+    swap = False
+
+    for index_ in range(len(num_list)-1):
+        num_1 = num_list[index_]
+        num_2 = num_list[index_+1]
+        if num_1 > num_2:
+            print(num_1, num_2)
+            num_list[index_], num_list[index_+1] = num_list[index_+1], num_list[index_]
+            swap = True
+
+print(num_list)
