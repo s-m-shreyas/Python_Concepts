@@ -28,8 +28,3 @@ This method is called type hinting or type annotation.
 some_var: str = ''
 some_var_2: str = ''
 some_var_3, some_var_4 = '', ''
-    
-
-
-
-
