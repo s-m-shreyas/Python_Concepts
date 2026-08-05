@@ -70,8 +70,10 @@ while swap:
     swap = False
 
     for index_ in range(len(num_list)-1):
+
         num_1 = num_list[index_]
         num_2 = num_list[index_+1]
+        
         if num_1 > num_2:
             print(num_1, num_2)
             num_list[index_], num_list[index_+1] = num_list[index_+1], num_list[index_]
