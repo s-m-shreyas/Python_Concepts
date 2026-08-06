@@ -209,12 +209,14 @@ def quick_sort_2(to_quicksort_list: list[int], low: int, high: int)-> None:
 
     
 
-    
+to_quicksort2_list: list[int] = [1, 3, 2, 5, 5, 4, 7, 4, 6, 8, 11, 10, 9]   
     
 low: int = 0
-high: int = len(to_quicksort_list)-1
-quick_sort_2(to_quicksort_list, low, high)
-print(to_quicksort_list)
+high: int = len(to_quicksort2_list)-1
+
+quick_sort_2(to_quicksort2_list, low, high) # returns None so cannot be store or printed.
+
+print(to_quicksort2_list)
 
 
 
