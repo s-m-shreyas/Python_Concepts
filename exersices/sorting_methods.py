@@ -242,15 +242,23 @@ def heap_sort(some_list: list[int])->None:
             right_child_index: int = (2 * index_) + 2
 
             if left_child_index < heap_size:
+
                 if some_list[left_child_index] > some_list[largest]:
+
                     largest = left_child_index
 
             if right_child_index < heap_size:
+
                 if some_list[right_child_index] > some_list[largest]:
+
                     largest = right_child_index
 
             if largest!=index_:
-                some_list[largest], some_list[index_] = some_list[index_], some_list[largest]
+
+                some_list[largest], \
+                    some_list[index_] = some_list[index_], \
+                                            some_list[largest]
+                
                 heapify(some_list, largest, heap_size)
 
    
@@ -263,8 +271,12 @@ def heap_sort(some_list: list[int])->None:
 
         while heap_size>1:
 
-            some_list[0], some_list[heap_size-1] = some_list[heap_size-1], some_list[0]
+            some_list[0], \
+                some_list[heap_size-1] = some_list[heap_size-1], \
+                                            some_list[0]
+            
             heap_size -= 1
+            
             heapify(some_list, 0, heap_size)
 
 
