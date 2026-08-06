@@ -3,7 +3,7 @@
 
 # Selection Sort Method ->
 
-some_list: list[int] = [1, 3, 2, 5, 4]
+some_list: list[int] = [1, 3, 2, 5, 5, 4, 7, 4, 6, 8, 11, 10, 9]
 sorted_list: list[int] = []
 init_: int = 0
 
@@ -68,7 +68,7 @@ def merge_sort(some_list: list[int])->list[int]:
     return merged_list
 
 
-pass_list: list[int] = [1, 3, 2, 5, 4, 7, 6, 8]
+pass_list: list[int] = [1, 3, 2, 5, 5, 4, 7, 4, 6, 8, 11, 10, 9]
 print(merge_sort(pass_list))
 
 
@@ -137,11 +137,6 @@ print(to_sort_list)
 
 # Quick Sort 
 
-"""
-"""
-to_quicksort_list: list[int] = [1, 3, 2, 5, 5, 4, 7, 4, 6, 8, 11, 10, 9]
-
-
 def quick_sort(to_quicksort_list: list[int])->list[int]:
 
     if len(to_quicksort_list) <= 1:
@@ -168,7 +163,9 @@ def quick_sort(to_quicksort_list: list[int])->list[int]:
     right: list[int] = quick_sort(to_quicksort_list[pivot+1:])
 
     return left + [to_quicksort_list[pivot]] + right
-    
+
+
+to_quicksort_list: list[int] = [1, 3, 2, 5, 5, 4, 7, 4, 6, 8, 11, 10, 9]
 
 print(quick_sort(to_quicksort_list))
 
@@ -181,7 +178,13 @@ Quick Sort does the hard work while partitioning.
 
 # in-place array changing quicksort style.
 
-def quick_sort_2(to_quicksort_list: list[int], low: int, high: int)-> None:
+def quick_sort_2(to_quicksort_list: list[int], 
+                 low: int=0, 
+                 high: int|None=None)-> None:
+
+    if high is None:
+
+        high = len(to_quicksort2_list)-1
 
     if low>=high:
         
@@ -207,16 +210,64 @@ def quick_sort_2(to_quicksort_list: list[int], low: int, high: int)-> None:
     quick_sort_2(to_quicksort_list, low, pivot-1)
     quick_sort_2(to_quicksort_list, pivot+1, high)
 
-    
 
-to_quicksort2_list: list[int] = [1, 3, 2, 5, 5, 4, 7, 4, 6, 8, 11, 10, 9]   
-    
-low: int = 0
-high: int = len(to_quicksort2_list)-1
+to_quicksort2_list: list[int] = [1, 3, 2, 5, 5, 4, 7, 4, 6, 8, 11, 10, 9]  
 
-quick_sort_2(to_quicksort2_list, low, high) # returns None so cannot be store or printed.
+# returns None, so cannot be stored to any variable or printed.
+quick_sort_2(to_quicksort2_list) 
 
 print(to_quicksort2_list)
+
+
+# Heap sort technique
+
+def heapify(some_list: list[int], index_: int, heap_size: int):
+
+    largest: int = index_
+    left_child_index: int = (2*index_)+1
+    right_child_index: int = (2*index_)+2
+
+    if left_child_index < heap_size:
+        if some_list[left_child_index]>some_list[largest]:
+            largest = left_child_index
+
+    if right_child_index < heap_size:
+        if some_list[right_child_index]>some_list[largest]:
+            largest = right_child_index
+
+    if largest!=index_:
+        some_list[largest], some_list[index_] = some_list[index_], some_list[largest]
+        heapify(some_list, largest, heap_size)
+    
+    
+def heap_sort(some_list: list[int])->None:
+
+    # flag: bool = True
+
+    # while flag:
+
+        # flag = False
+        heap_size: int = len(some_list)
+        last_parent = (heap_size // 2) - 1
+
+        for index_ in range(last_parent, -1, -1):
+
+            heapify(some_list, index_, heap_size)
+
+        while heap_size>1:
+
+            some_list[0], some_list[heap_size-1] = some_list[heap_size-1], some_list[0]
+            heap_size -= 1
+            heapify(some_list, 0, heap_size)
+
+            
+        
+
+
+heap_sort_list: list[int] = [1, 3, 2, 5, 5, 4, 7, 4, 6, 8, 11, 10, 9] 
+
+heap_sort(heap_sort_list)
+print(heap_sort_list)
 
 
 
