@@ -27,7 +27,6 @@ while some_list:
 print(sorted_list)
 
 
-
 # Merge Sort Method ->
 
 def merge_sort(some_list: list[int])->list[int]:
@@ -96,8 +95,9 @@ while swap:
         
         if num_1 > num_2:
 
-            print(num_1, num_2)
-            num_list[index_], num_list[index_+1] = num_list[index_+1], num_list[index_]
+            num_list[index_], \
+                num_list[index_+1] = num_list[index_+1], \
+                                        num_list[index_]
             swap = True
 
 
@@ -127,7 +127,7 @@ for index_ in range(1, len(to_sort_list)):
     while j>=0 and to_sort_list[j]>key:
 
         to_sort_list[j+1] = to_sort_list[j]
-        j-=1
+        j -= 1
 
     to_sort_list[j+1] = key
     
@@ -140,6 +140,7 @@ print(to_sort_list)
 def quick_sort(to_quicksort_list: list[int])->list[int]:
 
     if len(to_quicksort_list) <= 1:
+
         return to_quicksort_list
 
     pivot = len(to_quicksort_list) - 1
@@ -150,7 +151,10 @@ def quick_sort(to_quicksort_list: list[int])->list[int]:
 
         if to_quicksort_list[j] < to_quicksort_list[pivot]:
             
-            to_quicksort_list[boundary], to_quicksort_list[j] = to_quicksort_list[j], to_quicksort_list[boundary]
+            to_quicksort_list[boundary], \
+                to_quicksort_list[j] = to_quicksort_list[j], \
+                                        to_quicksort_list[boundary]
+            
             boundary+=1
         
     to_quicksort_list[boundary], \
@@ -186,7 +190,7 @@ def quick_sort_2(to_quicksort_list: list[int],
 
         high = len(to_quicksort2_list)-1
 
-    if low>=high:
+    if low >= high:
         
         return 
 
@@ -198,7 +202,10 @@ def quick_sort_2(to_quicksort_list: list[int],
 
         if to_quicksort_list[j] < to_quicksort_list[pivot]:
             
-            to_quicksort_list[boundary], to_quicksort_list[j] = to_quicksort_list[j], to_quicksort_list[boundary]
+            to_quicksort_list[boundary], \
+                to_quicksort_list[j] = to_quicksort_list[j], \
+                                        to_quicksort_list[boundary]
+            
             boundary+=1
         
     to_quicksort_list[boundary], \
@@ -207,8 +214,8 @@ def quick_sort_2(to_quicksort_list: list[int],
 
     pivot = boundary
 
-    quick_sort_2(to_quicksort_list, low, pivot-1)
-    quick_sort_2(to_quicksort_list, pivot+1, high)
+    quick_sort_2(to_quicksort_list, low, pivot - 1)
+    quick_sort_2(to_quicksort_list, pivot + 1, high)
 
 
 to_quicksort2_list: list[int] = [1, 3, 2, 5, 5, 4, 7, 4, 6, 8, 11, 10, 9]  
@@ -221,34 +228,34 @@ print(to_quicksort2_list)
 
 # Heap sort technique
 
-def heapify(some_list: list[int], index_: int, heap_size: int):
 
-    largest: int = index_
-    left_child_index: int = (2*index_)+1
-    right_child_index: int = (2*index_)+2
-
-    if left_child_index < heap_size:
-        if some_list[left_child_index]>some_list[largest]:
-            largest = left_child_index
-
-    if right_child_index < heap_size:
-        if some_list[right_child_index]>some_list[largest]:
-            largest = right_child_index
-
-    if largest!=index_:
-        some_list[largest], some_list[index_] = some_list[index_], some_list[largest]
-        heapify(some_list, largest, heap_size)
     
     
 def heap_sort(some_list: list[int])->None:
 
-    # flag: bool = True
+        def heapify(some_list: list[int], 
+            index_: int, 
+            heap_size: int):
 
-    # while flag:
+            largest: int = index_
+            left_child_index: int = (2 * index_) + 1
+            right_child_index: int = (2 * index_) + 2
 
-        # flag = False
+            if left_child_index < heap_size:
+                if some_list[left_child_index] > some_list[largest]:
+                    largest = left_child_index
+
+            if right_child_index < heap_size:
+                if some_list[right_child_index] > some_list[largest]:
+                    largest = right_child_index
+
+            if largest!=index_:
+                some_list[largest], some_list[index_] = some_list[index_], some_list[largest]
+                heapify(some_list, largest, heap_size)
+
+   
         heap_size: int = len(some_list)
-        last_parent = (heap_size // 2) - 1
+        last_parent: int = (heap_size // 2) - 1
 
         for index_ in range(last_parent, -1, -1):
 
@@ -259,9 +266,6 @@ def heap_sort(some_list: list[int])->None:
             some_list[0], some_list[heap_size-1] = some_list[heap_size-1], some_list[0]
             heap_size -= 1
             heapify(some_list, 0, heap_size)
-
-            
-        
 
 
 heap_sort_list: list[int] = [1, 3, 2, 5, 5, 4, 7, 4, 6, 8, 11, 10, 9] 
