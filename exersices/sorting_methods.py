@@ -233,51 +233,56 @@ print(to_quicksort2_list)
     
 def heap_sort(some_list: list[int])->None:
 
-        def heapify(some_list: list[int], 
-            index_: int, 
-            heap_size: int):
+    """
+    Heap Sort
+    Uses an internal helper function `heapify()`.
+    """
 
-            largest: int = index_
-            left_child_index: int = (2 * index_) + 1
-            right_child_index: int = (2 * index_) + 2
+    def heapify(some_list: list[int], 
+        index_: int, 
+        heap_size: int):
 
-            if left_child_index < heap_size:
+        largest: int = index_
+        left_child_index: int = (2 * index_) + 1
+        right_child_index: int = (2 * index_) + 2
 
-                if some_list[left_child_index] > some_list[largest]:
+        if left_child_index < heap_size:
 
-                    largest = left_child_index
+            if some_list[left_child_index] > some_list[largest]:
 
-            if right_child_index < heap_size:
+                largest = left_child_index
 
-                if some_list[right_child_index] > some_list[largest]:
+        if right_child_index < heap_size:
 
-                    largest = right_child_index
+            if some_list[right_child_index] > some_list[largest]:
 
-            if largest!=index_:
+                largest = right_child_index
 
-                some_list[largest], \
-                    some_list[index_] = some_list[index_], \
-                                            some_list[largest]
-                
-                heapify(some_list, largest, heap_size)
+        if largest!=index_:
 
-   
-        heap_size: int = len(some_list)
-        last_parent: int = (heap_size // 2) - 1
-
-        for index_ in range(last_parent, -1, -1):
-
-            heapify(some_list, index_, heap_size)
-
-        while heap_size>1:
-
-            some_list[0], \
-                some_list[heap_size-1] = some_list[heap_size-1], \
-                                            some_list[0]
+            some_list[largest], \
+                some_list[index_] = some_list[index_], \
+                                        some_list[largest]
             
-            heap_size -= 1
-            
-            heapify(some_list, 0, heap_size)
+            heapify(some_list, largest, heap_size)
+
+
+    heap_size: int = len(some_list)
+    last_parent: int = (heap_size // 2) - 1
+
+    for index_ in range(last_parent, -1, -1):
+
+        heapify(some_list, index_, heap_size)
+
+    while heap_size>1:
+
+        some_list[0], \
+            some_list[heap_size-1] = some_list[heap_size-1], \
+                                        some_list[0]
+        
+        heap_size -= 1
+        
+        heapify(some_list, 0, heap_size)
 
 
 heap_sort_list: list[int] = [1, 3, 2, 5, 5, 4, 7, 4, 6, 8, 11, 10, 9] 
