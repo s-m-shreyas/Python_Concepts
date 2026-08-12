@@ -1,5 +1,4 @@
 # type: ignore
-
 """
 04_instance_methods.py
 
