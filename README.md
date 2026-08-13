@@ -1,10 +1,4 @@
-You're right. 😅 I was still putting **nested code fences inside the README code fence**, which breaks the "one ultimate copy-paste" requirement.
 
-For a README, the safest approach is: **one outer code block only**, and inside the README use indentation for examples instead of additional triple-backtick fences.
-
-Here is the **entire README as ONE copy-pasteable file**:
-
-```markdown
 # Python Concepts
 
 A structured Python learning repository covering Python from fundamentals to object-oriented programming, advanced Python concepts, algorithms, and commonly used libraries.
