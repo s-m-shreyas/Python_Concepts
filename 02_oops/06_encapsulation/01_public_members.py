@@ -5,79 +5,133 @@
 
 Demonstrates public members in Python classes.
 
-Public members are attributes and methods that are accessible
-from outside the class without any restriction.
+A public attribute or method is one that has no underscore prefix.
+This means it is accessible directly from outside the class.
 
-In Python, members are public by default unless we use a
-special naming convention such as a leading underscore or
-double underscore.
+In Python, public members are the default behavior.
 """
 
 
 # ============================================================
-# 1. PUBLIC ATTRIBUTES
+# 1. SIMPLE PUBLIC ATTRIBUTE
+# ============================================================
+
+class Student:
+    """Represent a student."""
+
+    def __init__(self, name: str, marks: int) -> None:
+        self.name = name
+        self.marks = marks
+
+
+student = Student("Alice", 90)
+
+print(student.name)
+print(student.marks)
+
+"""
+This is a public attribute because there is no underscore.
+Anyone can read or modify it.
+"""
+
+
+# ============================================================
+# 2. PUBLIC METHOD
+# ============================================================
+
+class Calculator:
+    """A simple calculator class."""
+
+    def add(self, a: int, b: int) -> int:
+        return a + b
+
+
+calc = Calculator()
+print(calc.add(5, 7))
+
+"""
+The add() method is public and can be called from anywhere.
+This is the default design in Python.
+"""
+
+
+# ============================================================
+# 3. DIRECT MODIFICATION IS ALLOWED
 # ============================================================
 
 class BankAccount:
-    """Represent a simple bank account."""
+    """A bank account with a public balance."""
 
     def __init__(self, owner: str, balance: float) -> None:
         self.owner = owner
         self.balance = balance
 
-    def deposit(self, amount: float) -> None:
-        """Add money to the account."""
-        if amount > 0:
-            self.balance += amount
-            print(f"Deposited {amount}. New balance: {self.balance}")
-        else:
-            raise ValueError("Deposit amount must be positive.")
 
-    def withdraw(self, amount: float) -> None:
-        """Remove money from the account."""
-        if amount > 0 and amount <= self.balance:
-            self.balance -= amount
-            print(f"Withdrew {amount}. Remaining balance: {self.balance}")
-        else:
-            raise ValueError("Invalid withdrawal amount.")
+account = BankAccount("Rahul", 1500.0)
+account.balance = 5000.0
 
-
-account = BankAccount("Alice", 1500.0)
-
-print(account.owner)
 print(account.balance)
 
-account.deposit(250.0)
-account.withdraw(100.0)
+"""
+This works because balance is public.
+Python does not stop us from assigning a new value directly.
+This can be useful for simple code, but it is not always safe.
+"""
 
 
 # ============================================================
-# 2. PUBLIC MEMBERS ARE ACCESSIBLE OUTSIDE THE CLASS
+# 4. WHY PUBLIC MEMBERS ARE NOT STRONG ENCAPSULATION
 # ============================================================
 
-# This is the default behavior in Python.
-# Anyone can access or change a public attribute directly.
+class Product:
+    """Represent a product."""
 
-account.balance = 5000
-print(f"Updated balance: {account.balance}")
+    def __init__(self, name: str, price: float) -> None:
+        self.name = name
+        self.price = price
+
+
+p = Product("Laptop", 80000)
+
+p.price = -500
+print(p.price)
+
+"""
+The value becomes negative because the price is public.
+There is no validation guard.
+This is a common reason to use methods or protected/private
+members when designing a class.
+"""
 
 
 # ============================================================
-# 3. WHY THIS IS NOT STRONG ENCAPSULATION
+# 5. PUBLIC MEMBERS IN EVERYDAY PYTHON
 # ============================================================
 
-# Public members do not restrict direct access.
-# This is convenient for simple programs, but it can allow
-# accidental misuse if the object state is modified without
-# validation.
+class User:
+    """A simple user class."""
 
-# For better control, we usually use methods to manage access.
+    def __init__(self, username: str) -> None:
+        self.username = username
+
+
+user = User("shreyas")
+print(user.username)
+user.username = "new_user"
+print(user.username)
+
+"""
+This is valid and perfectly normal in Python.
+Because the attribute is public, direct access is allowed.
+"""
+
 
 # ============================================================
-# INTERVIEW NOTE
+# KEY TAKEAWAYS
 # ============================================================
 
-# In Python, public means "no underscore prefix".
-# The language does not prevent direct access by default.
-# A design with careful methods is usually preferred over
-# direct attribute modification.
+# - Public members are the default in Python.
+# - They are easy to access and simple to use.
+# - They do not enforce any restrictions.
+# - Direct modification can lead to invalid states.
+# - Good design often uses methods to validate and control access.
