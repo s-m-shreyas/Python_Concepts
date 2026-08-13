@@ -24,12 +24,12 @@ class Person:
     name: str
 
 
-p1 = Person(25, "Alice")
+p1 = Person(35, "Alice")
 p2 = Person(30, "Bob")
 
 print(p1 < p2)
 print(p1 > p2)
-print(sorted([p2, p1]))
+print(sorted([p2, p1], key=lambda item: item.age))
 
 """
 The dataclass compares objects by the field order defined in the class.
