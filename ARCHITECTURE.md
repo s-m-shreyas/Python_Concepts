@@ -593,4 +593,4 @@ When adding a new concept, ask:
 The goal is not maximum number of files.
 
 The goal is a **clear, scalable, logically organized Python learning system**.
-```
+
